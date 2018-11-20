@@ -29,7 +29,7 @@
                 }
 
                 var areaDosQuadrados = document.querySelector("#area-dos-quadrados");
-                areaDosQuadrados.append(quadrado);
+                areaDosQuadrados.appendChild(quadrado);
             }
 
             function getRandomColor() {
@@ -43,9 +43,9 @@
 
             var nomes = ["Diego", "Gabriel", "Lucas"];
             
-            nomes.forEach(nome => {
+            for (nome of nomes) {
                 insereNomeNaLista(nome);
-            });
+            }
 
             function adicionar() {
                 var nome = document.getElementsByName("nome")[0];
@@ -56,8 +56,8 @@
             function insereNomeNaLista(nome) {
                 var listaNomesUl = document.getElementById("nomes");
                 var nomeLi = document.createElement("li");
-                nomeLi.append(document.createTextNode(nome));
-                listaNomesUl.append(nomeLi);
+                nomeLi.appendChild(document.createTextNode(nome));
+                listaNomesUl.appendChild(nomeLi);
             }
 
 
