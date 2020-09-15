@@ -19,3 +19,92 @@ E por tudo isso o JavaScript hoje é a linguagem de programação mais utilizada
 
 
 Por [Rocketseat](https://rocketseat.com.br/starter/curso-gratuito-javascript)
+
+--- 
+
+## Anotações realizadas durante o curso
+
+
+### Manipulando o DOM
+
+`document.querySelector` ou `document.querySelectorAll`.
+
+### Método Splice
+
+Remove uma quantidade de elementos de um vetor a partir de uma determinada posição. Exemplo:
+
+`var_array.splice(pos, 1);`
+
+### Local Storage
+
+Armazenamento local simples baseado em chave e valor:
+`localStorage.setItem('key','value');`
+*Obs.: localStorage é uma variável global do JavaScript*
+
+### Conversões JSON
+
+- Vetor em JSON: `json = JSON.stringify(vetor);`
+- JSON em vetor: `vetor = JSON.parse(json);`
+
+### AJAX em JavaScript puro
+
+```
+var xhr = new XMLHttpRequest();
+xhr.open('GET', url);
+xhr.send(null);
+
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === 4) {
+    console.log(xhr.responseText);
+  }
+}
+```
+
+### Usando Promises
+
+Promises é um conceito de JavaScript onde suas funções não influenciam na linha do tempo do seu código, ou seja, eles retornam valor depois de um tempo sem influenciar na execução. Sendo assim, é interessante colocar o código anterior (AJAX) dentro de um promise desta forma:
+
+```
+var minhaPromise = function() {
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.send(null);
+    
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.stats === 200) {
+          resolve(JSON.parse(xhr.responseText));
+        } else {
+          reject('Erro');
+        }
+      }
+    }
+  });
+}
+
+minhaPromise()
+  .then(function(response) {
+    console.log(response);
+  })
+  .catch(function(error) {
+    console.warn(error);
+  });
+```
+
+### Axios
+
+Uma biblioteca para fazer requisições assíncrona no JavaScript.
+github.com/axios/axios
+
+Adicione a biblioteca no seu HTML via CDN e no seu código JavaScript anterior, altere todo ele para:
+
+```
+axios.get(url)
+  .then(function(response) {
+    console.log(response);
+  })
+  .catch(function(error) {
+    console.warn(error);
+  });
+```
